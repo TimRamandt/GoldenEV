@@ -13,7 +13,7 @@ namespace GoldenEVCore
         {
             CommandLineInterface CLI = new CommandLineInterface();
             CLI.Intro();
-            Console.ReadLine();
+            CLI.Run();
         }
     }
 }

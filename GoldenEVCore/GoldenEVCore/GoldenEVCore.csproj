@@ -43,6 +43,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CommandLine\CommandLineInterface.cs" />
+    <Compile Include="CommandLine\Commands\ClearCommand.cs" />
+    <Compile Include="CommandLine\Commands\ICommand.cs" />
+    <Compile Include="CommandLine\Commands\NullCommand.cs" />
+    <Compile Include="CommandLine\Commands\VersionCommand.cs" />
     <Compile Include="Models\EV.cs" />
     <Compile Include="Models\Pokemon.cs" />
     <Compile Include="Models\Stat.cs" />

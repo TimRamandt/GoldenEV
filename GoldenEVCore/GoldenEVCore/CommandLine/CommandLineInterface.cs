@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using GoldenEVCore.CommandLine.Commands;
 
 namespace GoldenEVCore.CommandLine
 {
@@ -13,11 +16,36 @@ namespace GoldenEVCore.CommandLine
             Console.WriteLine("Golden EV command line.");
         }
 
-        //commandLine only functions
-
-        public void GetVersion()
+        public void Run()
         {
-            //show the current Assembly version
+            while (true)
+            {
+                string input = Console.ReadLine();
+                ICommand Command;
+                switch (input.ToUpper())
+                { 
+                    case "CLEAR":
+                        Command = new ClearCommand();
+                        Command.Execute();
+                        break;
+                    case "VERSION":
+                        Command = new VersionCommand();
+                        Command.Execute();
+                        break;
+                    default:
+                        Command = new NullCommand();
+                        Command.Execute();
+                        break;
+                }
+            }
         }
+
+        //commandLine only functions
+        /*public void GetVersion()
+        {
+            string version = ((AssemblyFileVersionAttribute)Attribute.GetCustomAttribute(Assembly.GetExecutingAssembly(),
+            typeof(AssemblyFileVersionAttribute), false)).Version;
+            Console.WriteLine("currently running: " + version);
+        }*/
     }
 }
