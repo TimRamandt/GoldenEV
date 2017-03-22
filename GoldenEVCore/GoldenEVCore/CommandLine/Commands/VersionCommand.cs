@@ -13,7 +13,7 @@ namespace GoldenEVCore.CommandLine.Commands
         {
             string version = ((AssemblyFileVersionAttribute)Attribute.GetCustomAttribute(Assembly.GetExecutingAssembly(),
             typeof(AssemblyFileVersionAttribute), false)).Version;
-            Console.WriteLine("currently running: " + version);
+            Console.WriteLine("Current version: " + version);
         }
     }
 }

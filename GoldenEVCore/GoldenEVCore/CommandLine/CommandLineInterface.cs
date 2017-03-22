@@ -32,6 +32,10 @@ namespace GoldenEVCore.CommandLine
                         Command = new VersionCommand();
                         Command.Execute();
                         break;
+                    case "CREATE":
+                        Command = new CreateCommand();
+                        Command.Execute();
+                        break;
                     default:
                         Command = new NullCommand();
                         Command.Execute();
@@ -39,13 +43,5 @@ namespace GoldenEVCore.CommandLine
                 }
             }
         }
-
-        //commandLine only functions
-        /*public void GetVersion()
-        {
-            string version = ((AssemblyFileVersionAttribute)Attribute.GetCustomAttribute(Assembly.GetExecutingAssembly(),
-            typeof(AssemblyFileVersionAttribute), false)).Version;
-            Console.WriteLine("currently running: " + version);
-        }*/
     }
 }
