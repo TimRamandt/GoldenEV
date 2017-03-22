@@ -36,6 +36,10 @@ namespace GoldenEVCore.CommandLine
                         Command = new CreateCommand();
                         Command.Execute();
                         break;
+                    case "INIT":
+                        Command = new InitCommand();
+                        Command.Execute();
+                        break;
                     default:
                         Command = new NullCommand();
                         Command.Execute();
