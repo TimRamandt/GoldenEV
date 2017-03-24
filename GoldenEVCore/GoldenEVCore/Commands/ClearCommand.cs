@@ -15,7 +15,12 @@ namespace GoldenEVCore.Commands
 
         public void Help()
         {
-            Console.WriteLine("Clears the commandline ");
+            Console.WriteLine("Clears the commandline.");
+        }
+
+        public void ThrowError(string message)
+        {
+            throw new NotImplementedException();
         }
     }
 }

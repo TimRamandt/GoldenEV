@@ -3,23 +3,19 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using GoldenEVCore.Commands;
 
 namespace GoldenEVCore.Commands
 {
-    class FetchCommand : ICommand
+    class ExitCommand : ICommand
     {
-        //check if file exists
-
-        //if file not exists, create one
         public void Execute()
         {
-            throw new NotImplementedException();
+            Environment.Exit(0);
         }
 
         public void Help()
         {
-            Console.WriteLine("Fetches the XML document that saves the data. If no file is found, it automatically creates a new one.");
+            Console.WriteLine("Exit the shell cleanly.");
         }
 
         public void ThrowError(string message)

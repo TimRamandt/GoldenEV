@@ -93,5 +93,11 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\GoldenEVCore\GoldenEVCore.csproj">
+      <Project>{bc74a1e4-5997-4cc9-a9ce-5b2978253204}</Project>
+      <Name>GoldenEVCore</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

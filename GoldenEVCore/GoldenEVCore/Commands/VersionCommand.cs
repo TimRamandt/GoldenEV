@@ -13,12 +13,17 @@ namespace GoldenEVCore.Commands
         {
             string version = ((AssemblyFileVersionAttribute)Attribute.GetCustomAttribute(Assembly.GetExecutingAssembly(),
             typeof(AssemblyFileVersionAttribute), false)).Version;
-            Console.WriteLine("Current version: " + version);
+            Console.WriteLine("[{0}] Current version: {1}", DateTime.Now.ToShortTimeString(), version);
         }
 
         public void Help()
         {
             Console.WriteLine("Displays the current version of the application.");
+        }
+
+        public void ThrowError(string message)
+        {
+            throw new NotImplementedException();
         }
     }
 }

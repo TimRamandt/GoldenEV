@@ -45,7 +45,9 @@
     <Compile Include="CommandLine\CommandLineInterface.cs" />
     <Compile Include="Commands\ClearCommand.cs" />
     <Compile Include="Commands\CreateCommand.cs" />
+    <Compile Include="Commands\ExitCommand.cs" />
     <Compile Include="Commands\FetchCommand.cs" />
+    <Compile Include="Commands\HelpCommand.cs" />
     <Compile Include="Commands\ICommand.cs" />
     <Compile Include="Commands\NullCommand.cs" />
     <Compile Include="Commands\VersionCommand.cs" />

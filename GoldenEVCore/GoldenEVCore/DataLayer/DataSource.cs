@@ -13,7 +13,7 @@ namespace GoldenEVCore.DataLayer
 
         public void InitializeSource()
         {
-            source = new XDocument(new XElement("body"));
+            source = new XDocument(new XElement("root"));
 
             //local path will have to be removed in a later version.
             source.Save("C:\\Users\\Tim Ramandt\\Documents\\off-school projects\\GoldenEV\\GoldenEVData.xml");
