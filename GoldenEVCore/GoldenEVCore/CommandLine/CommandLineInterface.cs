@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
-using GoldenEVCore.CommandLine.Commands;
+﻿using GoldenEVCore.CommandLine;
+using GoldenEVCore.Commands;
+using System;
 
 namespace GoldenEVCore.CommandLine
 {
@@ -20,32 +15,46 @@ namespace GoldenEVCore.CommandLine
         {
             while (true)
             {
-                string input = Console.ReadLine();
-                ICommand Command;
-                switch (input.ToUpper())
+                string[] inputs = Console.ReadLine().Split(' ');
+                string inputCommand = inputs[0];
+                ICommand command;
+                switch (inputCommand.ToUpper())
                 { 
                     case "CLEAR":
-                        Command = new ClearCommand();
-                        Command.Execute();
+                        command = new ClearCommand();
+                        ExecuteOrHelp(inputs, command);
                         break;
                     case "VERSION":
-                        Command = new VersionCommand();
-                        Command.Execute();
+                        command = new VersionCommand();
+                        ExecuteOrHelp(inputs, command);
                         break;
                     case "CREATE":
-                        Command = new CreateCommand();
-                        Command.Execute();
+                        command = new CreateCommand(inputs[1],inputs[2]);
+                        ExecuteOrHelp(inputs, command);
                         break;
-                    case "INIT":
-                        Command = new InitCommand();
-                        Command.Execute();
+                    case "FETCH":
+                        command = new FetchCommand();
+                        ExecuteOrHelp(inputs, command);
                         break;
                     default:
-                        Command = new NullCommand();
-                        Command.Execute();
+                        command = new NullCommand();
+                        ExecuteOrHelp(inputs, command);
                         break;
                 }
             }
+        }
+
+        public void ExecuteOrHelp(string[] inputs, ICommand command)
+        {
+            foreach (var input in inputs)
+            {
+                if(input.ToUpper() == "HELP" || input.ToUpper() == "--HELP")
+                {
+                    command.Help();
+                    return;
+                }
+            }
+            command.Execute();
         }
     }
 }

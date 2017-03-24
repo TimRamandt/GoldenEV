@@ -5,7 +5,7 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace GoldenEVCore.CommandLine.Commands
+namespace GoldenEVCore.Commands
 {
     class VersionCommand : ICommand
     {
@@ -14,6 +14,11 @@ namespace GoldenEVCore.CommandLine.Commands
             string version = ((AssemblyFileVersionAttribute)Attribute.GetCustomAttribute(Assembly.GetExecutingAssembly(),
             typeof(AssemblyFileVersionAttribute), false)).Version;
             Console.WriteLine("Current version: " + version);
+        }
+
+        public void Help()
+        {
+            Console.WriteLine("Displays the current version of the application.");
         }
     }
 }

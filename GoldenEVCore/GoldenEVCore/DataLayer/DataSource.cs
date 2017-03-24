@@ -1,12 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using GoldenEVCore.Models;
-using Newtonsoft.Json;
-using System.IO;
-using System.Xml;
+﻿using GoldenEVCore.Models;
 using System.Xml.Linq;
 
 namespace GoldenEVCore.DataLayer
@@ -15,6 +7,7 @@ namespace GoldenEVCore.DataLayer
     {
         private XDocument source;
 
+        //datasource must be a Singleton.
         public DataSource()
         { }
 
@@ -34,8 +27,7 @@ namespace GoldenEVCore.DataLayer
 
         public void CreatePokemon(Pokemon pokemon)
         {
-            //string newPokemon = JsonConvert.SerializeObject(pokemon);
-
+            
             /*using (StreamWriter file = new StreamWriter(Properties.Resources.Data.FullPath))
             {
                 file.WriteLine(newPokemon);
