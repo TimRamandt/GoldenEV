@@ -13,6 +13,7 @@ namespace GoldenEVCore.Commands
         public string Name { get; set; }
         public string OriginalName { get; set; }
         private bool validInput = true;
+        private bool isHelpRequest = false;
 
         public CreateCommand(List<string> inputs)
         {
@@ -27,17 +28,22 @@ namespace GoldenEVCore.Commands
         private void parameterCheck(List<string> inputs, int requiredParameters)
         {
             if(inputs.Count < requiredParameters + 1)
-            {
-                this.ThrowError(String.Format("[{0}] Invalid parameters. Type Create help for more info.",
-                                                  DateTime.Now.ToShortTimeString()));
+            {                
                 validInput = false;
-                return;
             }
 
             for (int i = 1; i < inputs.Count; i++)
             {
                 parameterSingleCheck(inputs[i]);
             }
+
+            if (!isHelpRequest && inputs.Count < requiredParameters + 1)
+            {
+                this.ThrowError(String.Format("[{0}] this command requireds {1} parameters. Type Create help for more info.",
+                                                DateTime.Now.ToShortTimeString(), requiredParameters));
+            }
+
+            
         }
 
         private void parameterSingleCheck(string input)
@@ -48,6 +54,13 @@ namespace GoldenEVCore.Commands
                                                 DateTime.Now.ToShortTimeString(), input));
                 validInput = false;
             }
+
+            if(input.ToUpper() == "HELP")
+            {
+                this.Help();
+                validInput = false;
+                isHelpRequest = true;
+            }
         }
 
         public void Execute()
@@ -57,14 +70,14 @@ namespace GoldenEVCore.Commands
                 Pokemon pokemon = new Pokemon(Name, OriginalName);
                 DataSource source = new DataSource();
                 //source.CreatePokemon(pokemon);
-                Console.WriteLine("[{0}] creation succesfull", DateTime.Now.ToShortTimeString());
+                Console.WriteLine("[{0}] pokémon creation successful.", DateTime.Now.ToShortTimeString());
             }
             
         }
 
         public void Help()
         {
-            Console.WriteLine("Creates a new pokemon, with fresh EV stats");
+            Console.WriteLine("Creates a new pokémon, with fresh EV stats");
             Console.WriteLine("Syntax: Create <string:Name> <string:OriginalName>");
         }
 

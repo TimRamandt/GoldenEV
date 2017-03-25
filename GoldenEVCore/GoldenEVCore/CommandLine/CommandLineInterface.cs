@@ -10,6 +10,7 @@ namespace GoldenEVCore.CommandLine
     {
         private bool requestForHelp;
         private ICommand command;
+        private Command testCommand;
         public void Intro()
         {
             Console.WriteLine("Golden EV command line.");
@@ -37,9 +38,11 @@ namespace GoldenEVCore.CommandLine
                         ExecuteCommand();
                         break;
                     case "VERSION":
-                        command = new VersionCommand();
+                        /*command = new VersionCommand();
                         RequestForHelp(inputs);
-                        ExecuteCommand();
+                        ExecuteCommand();*/
+                        testCommand = new VersionCommand(inputs);
+                        testCommand.Execute();
                         break;
                     case "EXIT":
                         command = new ExitCommand();
@@ -48,8 +51,7 @@ namespace GoldenEVCore.CommandLine
                         break;
                     case "CREATE":
                         command = new CreateCommand(inputs);
-                        RequestForHelp(inputs);
-                        ExecuteCommand();
+                        command.Execute();
                         break;
                     case "FETCH":
                         command = new FetchCommand();

@@ -10,6 +10,6 @@ namespace GoldenEVCore.Commands
     {
         void Execute();
         void Help();
-        void ThrowError(string message);
+        /*void ThrowError(string message);*/
     }
 }

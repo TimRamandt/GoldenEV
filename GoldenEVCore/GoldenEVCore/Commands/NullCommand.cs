@@ -10,20 +10,20 @@ namespace GoldenEVCore.Commands
     {
         public void Execute()
         {
-            this.ThrowError(string.Format("[{0}] Command not found.", DateTime.Now.ToShortTimeString()));
+            //this.ThrowError(string.Format("[{0}] Command not found.", DateTime.Now.ToShortTimeString()));
         }
 
         public void Help()
         {
-            this.ThrowError(string.Format("[{0}] This command doesn't exist in the Golden EV shell", 
-                                            DateTime.Now.ToShortTimeString()));
+            //this.ThrowError(string.Format("[{0}] This command doesn't exist in the Golden EV shell", 
+            //                                DateTime.Now.ToShortTimeString()));
         }
 
-        public void ThrowError(string message)
+        /*public void ThrowError(string message)
         {
             Console.ForegroundColor = ConsoleColor.Red;
             Console.WriteLine(message);
             Console.ResetColor();
-        }
+        }*/
     }
 }

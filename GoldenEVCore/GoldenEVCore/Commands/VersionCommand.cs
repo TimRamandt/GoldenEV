@@ -7,23 +7,23 @@ using System.Threading.Tasks;
 
 namespace GoldenEVCore.Commands
 {
-    class VersionCommand : ICommand
+    class VersionCommand : Command
     {
-        public void Execute()
+        public VersionCommand(List<string> inputs) : base(inputs) {
+            base.checkIsHelpRequested(Inputs);
+        }
+
+        public override void Execute()
         {
             string version = ((AssemblyFileVersionAttribute)Attribute.GetCustomAttribute(Assembly.GetExecutingAssembly(),
             typeof(AssemblyFileVersionAttribute), false)).Version;
             Console.WriteLine("[{0}] Current version: {1}", DateTime.Now.ToShortTimeString(), version);
         }
 
-        public void Help()
+        public override void Help()
         {
             Console.WriteLine("Displays the current version of the application.");
         }
 
-        public void ThrowError(string message)
-        {
-            throw new NotImplementedException();
-        }
     }
 }
