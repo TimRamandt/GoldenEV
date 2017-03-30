@@ -6,21 +6,22 @@ using System.Threading.Tasks;
 
 namespace GoldenEVCore.Commands
 {
-    class ClearCommand : ICommand
+    class ClearCommand : Command
     {
-        public void Execute()
+        public ClearCommand(List<string> parameters) : base(parameters)
+        { }
+
+        public override void Execute()
         {
-            Console.Clear();
+            if (!IsHelpRequested)
+            {
+                Console.Clear();
+            }
         }
 
-        public void Help()
+        public override void Help()
         {
-            Console.WriteLine("Clears the commandline.");
-        }
-
-        public void ThrowError(string message)
-        {
-            throw new NotImplementedException();
+            Console.WriteLine("Clears the shell.");
         }
     }
 }

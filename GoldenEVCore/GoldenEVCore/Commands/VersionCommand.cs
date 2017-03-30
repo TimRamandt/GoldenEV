@@ -9,8 +9,8 @@ namespace GoldenEVCore.Commands
 {
     class VersionCommand : Command
     {
-        public VersionCommand(List<string> inputs) : base(inputs) {
-            base.checkIsHelpRequested(Inputs);
+        public VersionCommand(List<string> parameters) : base(parameters) {
+            base.CheckIsHelpRequested(Parameters);
         }
 
         public override void Execute()

@@ -6,21 +6,23 @@ using System.Threading.Tasks;
 
 namespace GoldenEVCore.Commands
 {
-    class ExitCommand : ICommand
+    class ExitCommand : Command
     {
-        public void Execute()
+        public ExitCommand(List<string> parameters) : base(parameters)
+        { }
+
+        public override void Execute()
         {
-            Environment.Exit(0);
+            if (!IsHelpRequested)
+            {
+                Environment.Exit(0);
+            }
+            
         }
 
-        public void Help()
+        public override void Help()
         {
             Console.WriteLine("Exit the shell cleanly.");
-        }
-
-        public void ThrowError(string message)
-        {
-            throw new NotImplementedException();
         }
     }
 }

@@ -9,8 +9,8 @@ namespace GoldenEVCore.CommandLine
     public class CommandLineInterface
     {
         private bool requestForHelp;
-        private ICommand command;
-        private Command testCommand;
+        private ICommand iCommand;
+        private Command command;
         public void Intro()
         {
             Console.WriteLine("Golden EV command line.");
@@ -28,38 +28,33 @@ namespace GoldenEVCore.CommandLine
                         Console.Write("");
                         break;
                     case "CLEAR":
-                        command = new ClearCommand();
-                        RequestForHelp(inputs);
-                        ExecuteCommand();
+                        command = new ClearCommand(inputs);
+                        command.Execute();
                         break;
                     case "HELP":
-                        command = new HelpCommand();
+                        iCommand = new HelpCommand();
                         RequestForHelp(inputs);
                         ExecuteCommand();
                         break;
                     case "VERSION":
-                        /*command = new VersionCommand();
-                        RequestForHelp(inputs);
-                        ExecuteCommand();*/
-                        testCommand = new VersionCommand(inputs);
-                        testCommand.Execute();
-                        break;
-                    case "EXIT":
-                        command = new ExitCommand();
-                        RequestForHelp(inputs);
-                        ExecuteCommand();
-                        break;
-                    case "CREATE":
-                        command = new CreateCommand(inputs);
+                        command = new VersionCommand(inputs);
                         command.Execute();
                         break;
+                    case "EXIT":
+                        command = new ExitCommand(inputs);
+                        command.Execute();
+                        break;
+                    case "CREATE":
+                        iCommand = new CreateCommand(inputs);
+                        iCommand.Execute();
+                        break;
                     case "FETCH":
-                        command = new FetchCommand();
+                        iCommand = new FetchCommand();
                         RequestForHelp(inputs);
                         ExecuteCommand();
                         break;
                     default:
-                        command = new NullCommand();
+                        iCommand = new NullCommand();
                         RequestForHelp(inputs);
                         ExecuteCommand();
                         break;
@@ -73,7 +68,7 @@ namespace GoldenEVCore.CommandLine
             {
                 if(input.ToUpper() == "HELP" || input.ToUpper() == "--HELP")
                 {
-                    command.Help();
+                    iCommand.Help();
                     requestForHelp = true;
                     return;
                 }
@@ -83,7 +78,7 @@ namespace GoldenEVCore.CommandLine
 
         private void ExecuteCommand()
         {
-            if (!requestForHelp) command.Execute();
+            if (!requestForHelp) iCommand.Execute();
         }
     }
 }

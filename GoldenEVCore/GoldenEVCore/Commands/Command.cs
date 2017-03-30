@@ -8,20 +8,22 @@ namespace GoldenEVCore.Commands
 {
     class Command
     {
-        public bool isHelpRequested { get; set; }
-        public List<string> Inputs { get; set; }
-        public Command(List<string> inputs)
+        public bool IsHelpRequested { get; private set; }
+        public List<string> Parameters { get; set; }
+        public Command(List<string> parameters)
         {
-            this.Inputs = inputs;
+            this.Parameters = parameters;
+            CheckIsHelpRequested(parameters);
         }
 
-        public void checkIsHelpRequested(List<string> inputs)
+        public void CheckIsHelpRequested(List<string> parameters)
         {
-            foreach (var input in inputs)
+            foreach (var parameter in parameters)
             {
-                if (input.ToUpper() == "HELP" || input.ToUpper() == "--HELP")
+                if (parameter.ToUpper() == "HELP" || parameter.ToUpper() == "--HELP")
                 {
-                    isHelpRequested = true;
+                    IsHelpRequested = true;
+                    Help();
                 }
             }
         }

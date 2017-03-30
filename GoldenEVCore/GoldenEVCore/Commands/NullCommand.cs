@@ -15,7 +15,7 @@ namespace GoldenEVCore.Commands
 
         public void Help()
         {
-            //this.ThrowError(string.Format("[{0}] This command doesn't exist in the Golden EV shell", 
+            //this.ThrowError(string.Format("[{0}] This iCommand doesn't exist in the Golden EV shell", 
             //                                DateTime.Now.ToShortTimeString()));
         }
 
