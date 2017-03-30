@@ -9,15 +9,16 @@ namespace GoldenEVCore.Commands
 {
     class VersionCommand : Command
     {
-        public VersionCommand(List<string> parameters) : base(parameters) {
-            base.CheckIsHelpRequested(Parameters);
-        }
+        public VersionCommand(List<string> parameters) : base(parameters) { }
 
         public override void Execute()
         {
-            string version = ((AssemblyFileVersionAttribute)Attribute.GetCustomAttribute(Assembly.GetExecutingAssembly(),
-            typeof(AssemblyFileVersionAttribute), false)).Version;
-            Console.WriteLine("[{0}] Current version: {1}", DateTime.Now.ToShortTimeString(), version);
+            if (!IsHelpRequested)
+            {
+                string version = ((AssemblyFileVersionAttribute)Attribute.GetCustomAttribute(Assembly.GetExecutingAssembly(),
+                            typeof(AssemblyFileVersionAttribute), false)).Version;
+                Console.WriteLine("[{0}] Current version: {1}", DateTime.Now.ToShortTimeString(), version);
+            } 
         }
 
         public override void Help()
