@@ -6,9 +6,10 @@ using System.Threading.Tasks;
 
 namespace GoldenEVCore.Commands
 {
-    class HelpCommand : ICommand
+    class HelpCommand : Command
     {
-        public void Execute()
+        public HelpCommand(List<string> parameters) : base(parameters) { }
+        public override void Execute()
         {
             Console.WriteLine("The full commandList with a brief description:");
             Console.WriteLine("Clear - Clears the commandline.");
@@ -21,14 +22,13 @@ namespace GoldenEVCore.Commands
             Console.WriteLine("You can get more information of a command by typing help next to it.");
         }
 
-        public void Help()
+        public override void Help()
         {
-            this.Execute();
+            if (!IsHelpRequested)
+            {
+                this.Execute();
+            }
         }
 
-        public void ThrowError(string message)
-        {
-            throw new NotImplementedException();
-        }
     }
 }

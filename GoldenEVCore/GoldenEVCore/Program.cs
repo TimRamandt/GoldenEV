@@ -12,7 +12,6 @@ namespace GoldenEVCore
         static void Main(string[] args)
         {
             CommandLineInterface CLI = new CommandLineInterface();
-            CLI.Intro();
             CLI.Run();
         }
     }

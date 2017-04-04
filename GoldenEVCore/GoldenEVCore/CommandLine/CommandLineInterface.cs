@@ -11,13 +11,15 @@ namespace GoldenEVCore.CommandLine
         private bool requestForHelp;
         private ICommand iCommand;
         private Command command;
-        public void Intro()
+        private void Intro()
         {
-            Console.WriteLine("Golden EV command line.");
+            Console.Title = "Golden EV Shell";
+            Console.WriteLine("Golden EV Commandline.");
         }
 
         public void Run()
         {
+            Intro();   
             while (true)
             {
                 List<string> inputs = Console.ReadLine().Split(' ').ToList();
@@ -32,9 +34,8 @@ namespace GoldenEVCore.CommandLine
                         command.Execute();
                         break;
                     case "HELP":
-                        iCommand = new HelpCommand();
-                        RequestForHelp(inputs);
-                        ExecuteCommand();
+                        command = new HelpCommand(inputs);
+                        command.Execute();
                         break;
                     case "VERSION":
                         command = new VersionCommand(inputs);
@@ -45,40 +46,19 @@ namespace GoldenEVCore.CommandLine
                         command.Execute();
                         break;
                     case "CREATE":
-                        iCommand = new CreateCommand(inputs);
-                        iCommand.Execute();
+                        command = new CreateCommand(inputs);
+                        command.Execute();
                         break;
                     case "FETCH":
-                        iCommand = new FetchCommand();
-                        RequestForHelp(inputs);
-                        ExecuteCommand();
+                        command = new FetchCommand(inputs);
+                        command.Execute();
                         break;
                     default:
-                        iCommand = new NullCommand();
-                        RequestForHelp(inputs);
-                        ExecuteCommand();
+                        command = new NullCommand(inputs);
+                        command.Execute();
                         break;
                 }
             }
-        }
-
-        private void RequestForHelp(List<string> inputs)
-        {
-            foreach (var input in inputs)
-            {
-                if(input.ToUpper() == "HELP" || input.ToUpper() == "--HELP")
-                {
-                    iCommand.Help();
-                    requestForHelp = true;
-                    return;
-                }
-            }
-            requestForHelp = false;
-        }
-
-        private void ExecuteCommand()
-        {
-            if (!requestForHelp) iCommand.Execute();
         }
     }
 }

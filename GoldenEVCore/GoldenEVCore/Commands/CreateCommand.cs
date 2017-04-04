@@ -8,21 +8,24 @@ using GoldenEVCore.DataLayer;
 
 namespace GoldenEVCore.Commands
 {
-    class CreateCommand : ICommand
+    class CreateCommand : Command
     {
         public string Name { get; set; }
         public string OriginalName { get; set; }
         private bool validInput = true;
         private bool isHelpRequest = false;
 
-        public CreateCommand(List<string> inputs)
-        {
-            parameterCheck(inputs, 2);
-            if (validInput)
+        public CreateCommand(List<string> parameters) : base(parameters) {
+            if (!IsHelpRequested)
             {
-                  this.Name = inputs[1];
-                  this.OriginalName = inputs[2];
+                parameterCheck(parameters, 2);
+                if (validInput)
+                {
+                    this.Name = parameters[1];
+                    this.OriginalName = parameters[2];
+                }
             }
+            
         }
 
         private void parameterCheck(List<string> inputs, int requiredParameters)
@@ -54,38 +57,26 @@ namespace GoldenEVCore.Commands
                                                 DateTime.Now.ToShortTimeString(), input));
                 validInput = false;
             }
-
-            if(input.ToUpper() == "HELP")
-            {
-                this.Help();
-                validInput = false;
-                isHelpRequest = true;
-            }
         }
 
-        public void Execute()
+        public override void Execute()
         {
-            if (validInput)
+            if (!IsHelpRequested)
             {
-                Pokemon pokemon = new Pokemon(Name, OriginalName);
-                DataSource source = new DataSource();
-                //source.CreatePokemon(pokemon);
-                Console.WriteLine("[{0}] pokémon creation successful.", DateTime.Now.ToShortTimeString());
+                if (validInput)
+                {
+                    Pokemon pokemon = new Pokemon(Name, OriginalName);
+                    DataSource source = new DataSource();
+                    //source.CreatePokemon(pokemon);
+                    Console.WriteLine("[{0}] pokémon creation successful.", DateTime.Now.ToShortTimeString());
+                }                
             }
-            
         }
 
-        public void Help()
+        public override void Help()
         {
             Console.WriteLine("Creates a new pokémon, with fresh EV stats");
             Console.WriteLine("Syntax: Create <string:Name> <string:OriginalName>");
-        }
-
-        public void ThrowError(string message)
-        {
-            Console.ForegroundColor = ConsoleColor.Red;
-            Console.WriteLine(message);
-            Console.ResetColor();
         }
     }
 }

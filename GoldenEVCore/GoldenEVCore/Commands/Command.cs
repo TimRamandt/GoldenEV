@@ -24,6 +24,7 @@ namespace GoldenEVCore.Commands
                 {
                     IsHelpRequested = true;
                     Help();
+                    return;
                 }
             }
         }

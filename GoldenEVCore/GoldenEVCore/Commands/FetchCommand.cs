@@ -7,17 +7,23 @@ using GoldenEVCore.Commands;
 
 namespace GoldenEVCore.Commands
 {
-    class FetchCommand : ICommand
+    class FetchCommand : Command
     {
+
+        public FetchCommand(List<string> parameters) : base(parameters) { }
         //check if file exists
 
         //if file not exists, create one
-        public void Execute()
+        public override void Execute()
         {
-            throw new NotImplementedException();
+            if (!IsHelpRequested)
+            {
+                throw new NotImplementedException();
+            }
+            
         }
 
-        public void Help()
+        public override void Help()
         {
             Console.WriteLine("Fetches the XML document that saves the data. If no file is found, it automatically creates a new one.");
         }
