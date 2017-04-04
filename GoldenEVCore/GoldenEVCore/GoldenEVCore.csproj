@@ -54,6 +54,7 @@
     <Compile Include="Commands\VersionCommand.cs" />
     <Compile Include="DataLayer\DataSource.cs" />
     <Compile Include="Models\EV.cs" />
+    <Compile Include="Models\Inventory.cs" />
     <Compile Include="Models\Pokemon.cs" />
     <Compile Include="Models\Stat.cs" />
     <Compile Include="Program.cs" />

@@ -11,9 +11,9 @@ namespace GoldenEVCore.DataLayer
         public DataSource()
         { }
 
-        public void InitializeSource()
+        private void InitializeSource()
         {
-            source = new XDocument(new XElement("root"));
+            source = new XDocument(new XElement("pokémons"));
 
             //local path will have to be removed in a later version.
             source.Save("C:\\Users\\Tim Ramandt\\Documents\\off-school projects\\GoldenEV\\GoldenEVData.xml");
@@ -27,7 +27,6 @@ namespace GoldenEVCore.DataLayer
 
         public void CreatePokemon(Pokemon pokemon)
         {
-            
             /*using (StreamWriter file = new StreamWriter(Properties.Resources.Data.FullPath))
             {
                 file.WriteLine(newPokemon);
