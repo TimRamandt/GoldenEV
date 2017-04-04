@@ -42,19 +42,15 @@ namespace GoldenEVCore.Commands
 
             if (!isHelpRequest && inputs.Count < requiredParameters + 1)
             {
-                this.ThrowError(String.Format("[{0}] this command requireds {1} parameters. Type Create help for more info.",
-                                                DateTime.Now.ToShortTimeString(), requiredParameters));
+                this.ThrowError($"this command requires {requiredParameters} parameters. Type Create help for more info.");
             }
-
-            
         }
 
         private void parameterSingleCheck(string input)
         {
             if (input == null || input == "")
             {
-                this.ThrowError(String.Format("[{0}] the parameter {1} is not valid. Type Create help for more info.", 
-                                                DateTime.Now.ToShortTimeString(), input));
+                this.ThrowError($"the parameter {input} is not valid. Type Create help for more info.");
                 validInput = false;
             }
         }
@@ -78,5 +74,6 @@ namespace GoldenEVCore.Commands
             Console.WriteLine("Creates a new pokémon, with fresh EV stats");
             Console.WriteLine("Syntax: Create <string:Name> <string:OriginalName>");
         }
+        
     }
 }

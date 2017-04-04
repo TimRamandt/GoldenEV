@@ -13,14 +13,14 @@ namespace GoldenEVCore.Commands
         {
             if (!IsHelpRequested)
             {
-                this.ThrowError(string.Format("[{0}] Command not found.", DateTime.Now.ToShortTimeString()));
+                this.ThrowError("Command not found.");
             }
             
         }
 
         public override void Help()
         {
-            this.ThrowError(string.Format("[{0}] This command doesn't exist in the Golden EV shell", DateTime.Now.ToShortTimeString()));
+            this.ThrowError("This command doesn't exist in the Golden EV shell");
         }
 
     }

@@ -36,8 +36,13 @@ namespace GoldenEVCore.Commands
         public void ThrowError(string message)
         {
             Console.ForegroundColor = ConsoleColor.Red;
-            Console.WriteLine(message);
+            WriteTimeStamp(message);
             Console.ResetColor();
+        }
+
+        protected void WriteTimeStamp(string message)
+        {
+            Console.WriteLine($"[{DateTime.Now.ToShortTimeString()}] {message}");
         }
     }
 }

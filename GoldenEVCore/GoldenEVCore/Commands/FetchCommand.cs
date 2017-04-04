@@ -25,7 +25,7 @@ namespace GoldenEVCore.Commands
 
         public override void Help()
         {
-            Console.WriteLine("Fetches the XML document that saves the data. If no file is found, it automatically creates a new one.");
+            Console.WriteLine("Fetches the XML document that saves the data. If no file is found, it automatically create a new one.");
         }
 
         public void ThrowError(string message)

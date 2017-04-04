@@ -8,13 +8,12 @@ namespace GoldenEVCore.CommandLine
 {
     public class CommandLineInterface
     {
-        private bool requestForHelp;
-        private ICommand iCommand;
         private Command command;
         private void Intro()
         {
             Console.Title = "Golden EV Shell";
             Console.WriteLine("Golden EV Commandline.");
+            Console.WriteLine("Enter help for a command overview.");
         }
 
         public void Run()
