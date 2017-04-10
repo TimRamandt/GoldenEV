@@ -21,43 +21,69 @@ namespace GoldenEVCore.CommandLine
             Intro();   
             while (true)
             {
-                List<string> inputs = Console.ReadLine().Split(' ').ToList();
-                string inputCommand = inputs[0];
+                string input = Console.ReadLine();
+                string[] cleanedInput = CleanInput(input);
+                string inputCommand = ExtractCommand(cleanedInput);
+                string[] inputParameters = ExtractParameters(cleanedInput);
+
                 switch (inputCommand.ToUpper())
                 {
                     case "":
                         Console.Write("");
                         break;
                     case "CLEAR":
-                        command = new ClearCommand(inputs);
+                        command = new ClearCommand(inputParameters);
                         command.Execute();
                         break;
                     case "HELP":
-                        command = new HelpCommand(inputs);
+                        command = new HelpCommand(inputParameters);
                         command.Execute();
                         break;
                     case "VERSION":
-                        command = new VersionCommand(inputs);
+                        command = new VersionCommand(inputParameters);
                         command.Execute();
                         break;
                     case "EXIT":
-                        command = new ExitCommand(inputs);
+                        command = new ExitCommand(inputParameters);
                         command.Execute();
                         break;
                     case "CREATE":
-                        command = new CreateCommand(inputs);
+                        command = new CreateCommand(inputParameters);
                         command.Execute();
                         break;
                     case "FETCH":
-                        command = new FetchCommand(inputs);
+                        command = new FetchCommand(inputParameters);
                         command.Execute();
                         break;
                     default:
-                        command = new NullCommand(inputs);
+                        command = new NullCommand(inputParameters);
                         command.Execute();
                         break;
                 }
             }
+        }
+
+
+        private string ExtractCommand(string[] cleanedInput)
+        {
+            return cleanedInput.FirstOrDefault();
+        }
+
+        private string[] ExtractParameters(string[] cleanedInput)
+        {
+            return cleanedInput.Skip(1).ToArray();
+        }
+
+        private string[] CleanInput(string input)
+        {
+            string[] rawInputs = input.Split('-');
+            
+            string[] CleanInput = new string[rawInputs.Length];
+            for (int i = 0; i < rawInputs.Length; i++)
+            {
+                CleanInput[i] = rawInputs[i].Trim();
+            }
+            return CleanInput;
         }
     }
 }

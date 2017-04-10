@@ -8,7 +8,7 @@ namespace GoldenEVCore.Commands
 {
     class ClearCommand : Command
     {
-        public ClearCommand(List<string> parameters) : base(parameters)
+        public ClearCommand(string[] parameters) : base(parameters)
         { }
 
         public override void Execute()

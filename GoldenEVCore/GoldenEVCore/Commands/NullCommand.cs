@@ -8,7 +8,7 @@ namespace GoldenEVCore.Commands
 {
     class NullCommand : Command
     {
-        public NullCommand(List<string> parameters) : base(parameters) { }
+        public NullCommand(string[] parameters) : base(parameters) { }
         public override void Execute()
         {
             if (!IsHelpRequested)

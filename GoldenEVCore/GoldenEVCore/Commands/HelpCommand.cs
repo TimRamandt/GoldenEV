@@ -8,7 +8,7 @@ namespace GoldenEVCore.Commands
 {
     class HelpCommand : Command
     {
-        public HelpCommand(List<string> parameters) : base(parameters) { }
+        public HelpCommand(string[] parameters) : base(parameters) { }
         public override void Execute()
         {
             Console.WriteLine("The full commandList with a brief description:");

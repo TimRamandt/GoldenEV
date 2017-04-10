@@ -15,10 +15,10 @@ namespace GoldenEVCore.Commands
         private bool validInput = true;
         private bool isHelpRequest = false;
 
-        public CreateCommand(List<string> parameters) : base(parameters) {
+        public CreateCommand(string[] parameters) : base(parameters) {
             if (!IsHelpRequested)
             {
-                parameterCheck(parameters, 2);
+                ParameterCheck(parameters, 2);
                 if (validInput)
                 {
                     this.Name = parameters[1];
@@ -28,19 +28,19 @@ namespace GoldenEVCore.Commands
             
         }
 
-        private void parameterCheck(List<string> inputs, int requiredParameters)
+        private void ParameterCheck(string[] inputs, int requiredParameters)
         {
-            if(inputs.Count < requiredParameters + 1)
+            if(inputs.Length < requiredParameters + 1)
             {                
                 validInput = false;
             }
 
-            for (int i = 1; i < inputs.Count; i++)
+            for (int i = 1; i < inputs.Length; i++)
             {
                 parameterSingleCheck(inputs[i]);
             }
 
-            if (!isHelpRequest && inputs.Count < requiredParameters + 1)
+            if (!isHelpRequest && inputs.Length < requiredParameters + 1)
             {
                 this.ThrowError($"this command requires {requiredParameters} parameters. Type Create help for more info.");
             }

@@ -9,7 +9,7 @@ namespace GoldenEVCore.Commands
 {
     class VersionCommand : Command
     {
-        public VersionCommand(List<string> parameters) : base(parameters) { }
+        public VersionCommand(string[] parameters) : base(parameters) { }
 
         public override void Execute()
         {
@@ -17,7 +17,7 @@ namespace GoldenEVCore.Commands
             {
                 string version = ((AssemblyFileVersionAttribute)Attribute.GetCustomAttribute(Assembly.GetExecutingAssembly(),
                             typeof(AssemblyFileVersionAttribute), false)).Version;
-                Console.WriteLine("[{0}] Current version: {1}", DateTime.Now.ToShortTimeString(), version);
+                WriteTimeStamp($"Current version: {version}");
             } 
         }
 

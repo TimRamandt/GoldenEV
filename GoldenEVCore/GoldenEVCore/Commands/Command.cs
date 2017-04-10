@@ -9,14 +9,14 @@ namespace GoldenEVCore.Commands
     class Command
     {
         public bool IsHelpRequested { get; private set; }
-        public List<string> Parameters { get; set; }
-        public Command(List<string> parameters)
+        public string[] Parameters { get; set; }
+        public Command(string[] parameters)
         {
             this.Parameters = parameters;
             CheckIsHelpRequested(parameters);
         }
 
-        public void CheckIsHelpRequested(List<string> parameters)
+        public void CheckIsHelpRequested(string[] parameters)
         {
             foreach (var parameter in parameters)
             {

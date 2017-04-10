@@ -8,7 +8,7 @@ namespace GoldenEVCore.Commands
 {
     class ExitCommand : Command
     {
-        public ExitCommand(List<string> parameters) : base(parameters)
+        public ExitCommand(string[] parameters) : base(parameters)
         { }
 
         public override void Execute()

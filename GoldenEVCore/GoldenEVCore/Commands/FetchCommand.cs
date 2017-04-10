@@ -10,7 +10,7 @@ namespace GoldenEVCore.Commands
     class FetchCommand : Command
     {
 
-        public FetchCommand(List<string> parameters) : base(parameters) { }
+        public FetchCommand(string[] parameters) : base(parameters) { }
         //check if file exists
 
         //if file not exists, create one
